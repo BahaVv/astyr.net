@@ -1,0 +1,43 @@
+a:link{
+	color: #6a5acd;
+	text-decoration: none;
+}
+
+a:visited{
+	color: #6a5acd;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #6a5acd;
+	text-decoration: underline;
+}
+
+a:active {
+	color: #4b0082;
+ 	text-decoration: none;
+}
+
+.body{
+	font-family:monospace, sans-serif;
+	margin: 0 auto;
+	width: 800px;
+	z-index: -1;
+	background-color: #CBCCF8;  
+}
+
+h1{
+	margin-bottom:20px;
+}
+
+.background{
+	background-color: #CBCCF8;
+}
+
+.ico{
+	border-radius: 25px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>WebGL Tennis</title>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+  // TODO: Move this into separate .glsl file
+
+  precision mediump float;// Float precision -- medium should be compatible with all
+                           // graphics cards post-2011 integrated, or post-2009 dedicated
+  attribute vec4 vertexPosition; // Fed from initGL
+  uniform vec2 trans; // Fed from render() via its render*() subfunctions
+
+  mat4 transMat = mat4( // Translation matrix: Only Y axis so far!
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    trans.x, trans.y, 0, 1
+  );
+
+  void main() {
+    gl_Position = transMat * vertexPosition; // Vf = M * Vi
+  }
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+  precision mediump float; // See comment in vertex shader
+  uniform vec4 fragColor; // Fed from render()
+
+  void main() {
+    gl_FragColor = fragColor; // Set everything to the same color! (White, presently)
+  }
+</script>
+
+<script type="text/javascript" src="Common/webgl-utils.js"></script>
+<script type="text/javascript" src="Common/InitShaders.js"></script>
+<script type="text/javascript" src="Common/MV.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+<link href="style.css" rel="stylesheet">
+
+</head>
+
+<body onload = "initGL()" onkeydown="keyDown(event)" onkeyup="keyUp(event)">
+  <text class="title">WebGL Tennis</text>&nbsp;
+  <audio id="music" src="Blip Stream.ogg" style="display:hidden" loop></audio>
+  <canvas id="canvas" style="background: url(background.png)" width="1024" height="768"></canvas>
+  <div class="score"><p> Score: &lt;<span id="score1"></span>:<span id="score2"></span>&gt; </p></div>
+  <text class="control"> Player 1 Controls: W,S <br> Player 2 Controls: Arrow Keys <br><br></text>
+  <text class="credits"> By Adam Kimball and Benjamin Lannon <br> Music is "Blip Stream" by Kevin MacLeod of Incomptech. <br> You may need to allow autoplay in your browser to hear audio. </text>
+</body>
+</html>
